@@ -34,5 +34,5 @@ public class TodoList {
     private LocalDate donDate;
 
     @Column(name = "isdone", nullable = false)
-    private boolean isdone;
+    private boolean isDone = false;
 }

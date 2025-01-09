@@ -22,34 +22,34 @@ public class UserPrinciple implements UserDetails {
     transient private User user;
     private Set<GrantedAuthority> authorities;
 
-    @Override
+    @Override //계정의 권한 목록 리턴
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-    @Override
+    @Override //비밀번호 리턴
     public String getPassword() {
         return password;
     }
-    @Override
+    @Override //계정의 고유한 값(pk) 리턴
     public String getUsername() {
         return username;
     }
 
-    @Override
+    @Override //계정의 만료여부
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
+    @Override //계정의 잠김여부
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
+    @Override //비밀번호 만료여부
     public boolean isCredentialsNonExpired() {
         return true;
     }
-    @Override
+    @Override //계정의 활성화 여부
     public boolean isEnabled() {
         return true;
     }

@@ -23,8 +23,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-@Configuration
-@EnableWebSecurity
+@Configuration //스프링의 환경설정 파일을 의미
+@EnableWebSecurity //모든 요청 URL이 스프링 시큐리티의 제어를 받도록 함
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
@@ -43,8 +43,8 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authz)->authz
                         .requestMatchers("/api/authentication/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/product/**").permitAll()
-                        .requestMatchers("/api/product/**").hasRole(Role.Admin.name())
+//                        .requestMatchers(HttpMethod.GET,"/api/product/**").permitAll()
+//                        .requestMatchers("/api/product/**").hasRole(Role.Admin.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

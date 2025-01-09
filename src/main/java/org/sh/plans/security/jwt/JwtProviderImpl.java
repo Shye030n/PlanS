@@ -51,11 +51,11 @@ public class JwtProviderImpl implements JwtProvider {
 
     @Override
     public Authentication getAuthentication(HttpServletRequest request) {
-        Claims claims =extractClaims(request);
+        Claims claims =extractClaims(request); //클레임 추출
         if(claims==null){
             return null;
         }
-        String username = claims.getSubject();
+        String username = claims.getSubject(); //클레임에서 사용자 정보 추출
         Long userId = claims.get("userId", Long.class);
 
         Set<GrantedAuthority> authorities =
@@ -73,7 +73,7 @@ public class JwtProviderImpl implements JwtProvider {
             return null;
         }
 
-        return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
+        return new UsernamePasswordAuthenticationToken(userDetails, null, authorities); //인증객체 생성 후 반환
     }
 
     @Override
@@ -88,7 +88,7 @@ public class JwtProviderImpl implements JwtProvider {
         return true;
     }
 
-    private Claims extractClaims(HttpServletRequest request) {
+    private Claims extractClaims(HttpServletRequest request) { //사용자 인증정보를 기반으로 JWT(Json Web Token)을 생성
         String token = SecurityUtils.extractAuthTokenFromRequest(request);
         if(token == null) {
             return null;
